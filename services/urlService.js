@@ -14,14 +14,14 @@ const shortenUrl = async (longUrl, customAlias = "", expiration = "") => {
   let url = await Url.findOne({ longUrl });
   if (url) {
     return {
-      shortUrl: `http://localhost:5000/api/${url.shortId}`,
+      shortUrl: `https://url-shortener-backend-20d1.onrender.com/api/${url.shortId}`,
       qrCode: url.qrCode,
     }; // Return the existing short URL if found and the qrcode
   }
 
   // Use custom alias if provided, otherwise generate a short ID
   const shortId = customAlias || shortid.generate();
-  const shortUrl = `http://localhost:5000/api/${shortId}`;
+  const shortUrl = `https://url-shortener-backend-20d1.onrender.com/api/${shortId}`;
 
   // Check if the shortId or customAlias already exists
   const existingUrl = await Url.findOne({
